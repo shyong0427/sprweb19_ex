@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+	 <select id="selectJikwonData" resultType="dto">
+	 	SELECT j.jikwon_no, j.jikwon_name, b.buser_tel, j.jikwon_jik, COUNT(g.gogek_damsano) AS gogek_su FROM jikwon j JOIN buser b JOIN gogek g ON j.buser_num = b.buser_no AND j.jikwon_no = g.gogek_damsano GROUP BY g.gogek_damsano;
+	 </select>
+	 <select id="selectGogekData" resultType="dto2">
+	 	SELECT gogek_no, gogek_name, gogek_tel FROM gogek WHERE gogek_damsano = #{num};
+	 </select>
+</mapper>
